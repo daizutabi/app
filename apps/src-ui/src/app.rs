@@ -55,17 +55,10 @@ pub fn App() -> impl IntoView {
     };
 
     view! {
-        <main class="m-4 px-5 py-5">
+        <main>
             <form on:submit=greet>
-                <input
-                    class="input"
-                    id="greet-input"
-                    placeholder="Enter a name..."
-                    on:input=update_name
-                />
-                <button class="btn" type="submit">
-                    "Greet"
-                </button>
+                <input id="greet-input" placeholder="Enter a name..." on:input=update_name />
+                <button type="submit">"Greet"</button>
             </form>
             <p>
                 <b>{move || greet_msg.get()}</b>
