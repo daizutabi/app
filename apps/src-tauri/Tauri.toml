@@ -1,8 +1,8 @@
 [build]
 dev-url = "http://localhost:1420"
-before-dev-command = "trunk serve"
-before-build-command = "trunk build"
-frontend-dist = "../dist"
+before-dev-command = { cwd = "../src-ui", script = "trunk serve" }
+before-build-command = { cwd = "../src-ui", script = "trunk build" }
+frontend-dist = "../src-ui/dist"
 
 [bundle]
 active = true
