@@ -1,3 +1,7 @@
+product-name = "src-tauri"
+version = "0.0.0"
+identifier = "com.daizutabi.dev"
+
 [build]
 dev-url = "http://localhost:1420"
 before-dev-command = { cwd = "../src-ui", script = "trunk serve" }
