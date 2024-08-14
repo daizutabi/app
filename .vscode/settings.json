@@ -1,6 +1,23 @@
 {
+  // "css.validate": false,
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": true
+  },
   "emmet.includeLanguages": {
     "rust": "html"
   },
-  "rust-analyzer.rustfmt.overrideCommand": ["leptosfmt", "--stdin", "--rustfmt"]
+  "rust-analyzer.rustfmt.overrideCommand": [
+    "leptosfmt",
+    "--stdin",
+    "--rustfmt"
+  ],
+  "tailwindCSS.includeLanguages": {
+    "rust": "html"
+  },
+  "eslint.useESLintClass": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
 }

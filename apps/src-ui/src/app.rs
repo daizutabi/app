@@ -55,18 +55,17 @@ pub fn App() -> impl IntoView {
     };
 
     view! {
-        <main class="container">
-            <div class="row">
-                <a href="https://tauri.app" target="_blank">
-                    <img src="public/tauri.svg" class="logo tauri" alt="Tauri logo" />
-                </a>
-                <a href="https://docs.rs/leptos/" target="_blank">
-                    <img src="public/leptos.svg" class="logo leptos" alt="Leptos logo" />
-                </a>
-            </div>
-            <form class="row" on:submit=greet>
-                <input id="greet-input" placeholder="Enter a name..." on:input=update_name />
-                <button type="submit">"Greet"</button>
+        <main class="m-4 px-5 py-5">
+            <form on:submit=greet>
+                <input
+                    class="input"
+                    id="greet-input"
+                    placeholder="Enter a name..."
+                    on:input=update_name
+                />
+                <button class="btn" type="submit">
+                    "Greet"
+                </button>
             </form>
             <p>
                 <b>{move || greet_msg.get()}</b>
