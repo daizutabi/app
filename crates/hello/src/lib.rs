@@ -1,3 +1,11 @@
+/// Add two numbers.
+///
+/// # Examples
+///
+/// ```
+/// let x = hello::add(1, 2);
+/// assert_eq!(x, 3);
+/// ```
 pub fn add(left: u64, right: u64) -> u64 {
     left + right
 }
