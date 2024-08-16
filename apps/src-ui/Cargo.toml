@@ -6,6 +6,7 @@ edition = { workspace = true }
 [dependencies]
 console_error_panic_hook = "0.1.7"
 console_log = "1.0.0"
+# gloo-timers = { version = "0.3.0", features = ["futures"] }
 icondata = "0.4.0"
 js-sys = "0.3"
 leptos = { version = "0.7.0-beta2", features = ["csr"] }
@@ -13,5 +14,6 @@ log = "0.4"
 serde = { version = "1", features = ["derive"] }
 serde-wasm-bindgen = "0.6"
 thaw = { version = "0.4.0-beta", features = ["csr"] }
+# tokio = { version = "1.39", features = ["time", "rt"], optional = true }
 wasm-bindgen = "0.2"
 wasm-bindgen-futures = "0.4"

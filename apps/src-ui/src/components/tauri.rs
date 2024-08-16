@@ -2,6 +2,7 @@ use leptos::prelude::*;
 use leptos::spawn::spawn_local;
 use serde::{Deserialize, Serialize};
 use serde_wasm_bindgen::to_value;
+use thaw::Button;
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
@@ -37,10 +38,8 @@ pub fn TauriTester() -> impl IntoView {
 
     view! {
         <div>
-            <button on:click=submit>"Submit"</button>
-            <p>
-                <b>{move || greet_msg.get()}</b>
-            </p>
+            <Button on_click=submit>"Submit"</Button>
+            <p>{greet_msg}</p>
         </div>
     }
 }

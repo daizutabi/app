@@ -3,7 +3,10 @@ use tauri::ipc::Response;
 #[tauri::command]
 pub fn greet(name: &str) -> String {
     let x = hello::add(1, 2);
-    format!("Hello, {}! You've been greeted from Rust! {}", name, x)
+    println!("start");
+    std::thread::sleep(std::time::Duration::from_secs(2));
+    println!("end");
+    format!("Hello, {}! {}", name, x)
 }
 
 #[tauri::command]

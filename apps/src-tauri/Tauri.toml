@@ -25,3 +25,4 @@ with-global-tauri = true
 title = "MyApp"
 width = 800
 height = 600
+# decorations = false

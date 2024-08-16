@@ -1,5 +1,5 @@
 use leptos::prelude::*;
-use thaw::{Button, ButtonAppearance, Space, Text};
+use thaw::{Button, ButtonAppearance, ButtonShape, Space, Text};
 
 #[component]
 pub fn SimpleCounter(
@@ -8,16 +8,20 @@ pub fn SimpleCounter(
     /// The change that should be applied each time the button is clicked.
     step: i32,
 ) -> impl IntoView {
-    let (value, set_value) = signal(initial_value);
+    let value = RwSignal::new(initial_value);
+
+    let inc = move |_| value.update(|value| *value += step);
 
     view! {
         <Space>
-            <Button appearance=ButtonAppearance::Primary on:click=move |_| set_value.set(0)>
+            <Button appearance=ButtonAppearance::Primary on_click=move |_| value.set(0)>
                 "Clear"
             </Button>
-            <Button on:click=move |_| *set_value.write() -= step>"-1"</Button>
+            <Button on_click=move |_| *value.write() -= step shape=ButtonShape::Circular>
+                "-1"
+            </Button>
             <Text>"Value: " {value} "!"</Text>
-            <Button on:click=move |_| set_value.update(|value| *value += step)>"+1"</Button>
+            <Button on_click=inc>"+1"</Button>
         </Space>
     }
 }
