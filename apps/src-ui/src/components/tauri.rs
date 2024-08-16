@@ -26,7 +26,7 @@ pub fn TauriTester() -> impl IntoView {
         logging::console_log("clicked.");
 
         spawn_local(async move {
-            let name = greet_msg.get() + "abc";
+            let name = greet_msg.get_untracked() + "abc";
             let args = GreetArgs {
                 name: name.as_str(),
             };
