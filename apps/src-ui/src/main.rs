@@ -10,5 +10,9 @@ fn main() {
 
     logging::console_log("mounting to body.");
 
-    mount_to_body(App)
+    // mount_to_body(App)
+
+    mount_to_body(|| {
+        view! { <App /> }
+    })
 }
