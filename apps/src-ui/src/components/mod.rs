@@ -1,3 +1,4 @@
+pub mod action;
 pub mod counter;
 pub mod suspense;
 pub mod tauri;
