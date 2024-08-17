@@ -1,18 +1,16 @@
 // use gloo_timers::future::TimeoutFuture;
 use leptos::prelude::*;
 use thaw::{Button, Input};
-use uuid::Uuid;
 
 // Here we define an async function
 // This could be anything: a network request, database read, etc.
 // Think of it as a mutation: some imperative async action you run,
 // whereas a resource would be some async data you load
-async fn add_todo(text: String) -> Uuid {
+async fn add_todo(text: String) -> String {
     logging::console_log(text.as_str());
-    // fake a one-second delay
-    // TimeoutFuture::new(1_000).await;
-    // pretend this is a post ID or something
-    Uuid::new_v4()
+    let mut x = text.clone();
+    x.push_str("!");
+    return x;
 }
 
 #[component]

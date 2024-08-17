@@ -20,6 +20,7 @@ icon = [
 
 [app]
 with-global-tauri = true
+# allowlist.all = true
 
 [[app.windows]]
 title = "MyApp"
