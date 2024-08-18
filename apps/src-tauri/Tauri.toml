@@ -1,6 +1,6 @@
 product-name = "src-tauri"
 version = "0.0.0"
-identifier = "com.daizutabi.dev"
+identifier = "com.tauri.dev"
 
 [build]
 dev-url = "http://localhost:1420"

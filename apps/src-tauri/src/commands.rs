@@ -1,10 +1,10 @@
 use tauri::ipc::Response;
-use tauri::Emitter;
+use tauri::{AppHandle, Emitter};
 
 #[tauri::command]
-pub fn greet(name: String) -> String {
+pub fn greet(app: AppHandle, name: String) -> String {
     let x = hello::add(1, 2);
-    println!("start");
+    println!("start {app:?}");
     std::thread::spawn({
         move || {
             println!("a");
@@ -35,13 +35,20 @@ pub fn read_file() -> Response {
 }
 
 #[tauri::command]
-pub fn trigger_listen_events(app: tauri::AppHandle) {
-    std::thread::spawn({
-        move || {
-            for i in 1..=10000 {
-                app.emit("back-to-front", i).unwrap();
-                // std::thread::sleep(std::time::Duration::from_millis(500));
-            }
-        }
-    });
+pub async fn trigger_listen_events(app: AppHandle) {
+    let emit = |x| app.emit("back-to-front", x).unwrap();
+
+    for i in 1..=1000 {
+        emit(Some(i));
+        std::thread::sleep(std::time::Duration::from_millis(1));
+    }
+    emit(None);
+    // std::thread::spawn({
+    //     move || {
+    //         for i in 1..=10000 {
+    //             app.emit("back-to-front", i).unwrap();
+    //             // std::thread::sleep(std::time::Duration::from_millis(500));
+    //         }
+    //     }
+    // });
 }

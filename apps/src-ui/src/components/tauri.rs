@@ -1,6 +1,5 @@
 use futures::stream::StreamExt;
 use leptos::prelude::*;
-use leptos::spawn::spawn_local;
 use serde::{Deserialize, Serialize};
 use thaw::{Button, Input};
 // use wasm_bindgen::prelude::*;
@@ -32,7 +31,7 @@ pub fn TauriTester() -> impl IntoView {
     let emit_count = RwSignal::new(0);
     let listen_event = RwSignal::new(0);
 
-    spawn_local(async move {
+    leptos::spawn::spawn_local(async move {
         let mut listener = tauri_sys::event::listen::<i32>("front-to-back")
             .await
             .unwrap();
@@ -42,21 +41,21 @@ pub fn TauriTester() -> impl IntoView {
         }
     });
 
-    spawn_local(async move {
-        let mut listener = tauri_sys::event::listen::<i32>("back-to-front")
+    leptos::spawn::spawn_local(async move {
+        let mut listener = tauri_sys::event::listen::<Option<i32>>("back-to-front")
             .await
             .unwrap();
 
         while let Some(event) = listener.next().await {
-            listen_event.set(event.payload);
-            if event.payload == 100 {
-                break;
+            match event.payload {
+                Some(x) => listen_event.set(x),
+                None => listen_event.set(0),
             }
         }
     });
 
     let trigger_invoke = move |_| {
-        spawn_local(async move {
+        leptos::spawn::spawn_local(async move {
             let name = name.get_untracked();
             let args = GreetArgs { name };
             let msg: String = tauri_sys::core::invoke("greet", args).await;
@@ -65,15 +64,16 @@ pub fn TauriTester() -> impl IntoView {
     };
 
     let trigger_emit_event = move |_| {
-        spawn_local(async move {
+        leptos::spawn::spawn_local(async move {
             let n = emit_count.get_untracked();
             tauri_sys::event::emit("front-to-back", &n).await.unwrap();
         });
     };
 
     let trigger_listen_events = move |_| {
-        spawn_local(async move {
-            tauri_sys::core::invoke::<()>("trigger_listen_events", &()).await;
+        leptos::spawn::spawn_local(async move {
+            log::info!("a");
+            tauri_sys::core::invoke::<()>("trigger_listen_events", ()).await;
         });
     };
 
