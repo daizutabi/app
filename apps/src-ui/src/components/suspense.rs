@@ -8,7 +8,7 @@ async fn first_wait_fn(seconds: u64) -> u64 {
     // std::thread::sleep(std::time::Duration::from_secs(2));
     // TimeoutFuture::new(1_000).await;
 
-    logging::console_log("suspense.");
+    log::info!("suspense.");
     seconds
 }
 

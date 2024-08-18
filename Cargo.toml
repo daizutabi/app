@@ -2,6 +2,10 @@
 resolver = "2"
 members = ["apps/src-ui", "apps/src-tauri", "crates/hello", "crates/api"]
 
+[profile.release]
+codegen-units = 1
+lto = true
+
 [workspace.package]
 edition = "2021"
 

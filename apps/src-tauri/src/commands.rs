@@ -8,10 +8,11 @@ pub fn greet(name: String) -> String {
     std::thread::spawn({
         move || {
             println!("a");
-            std::thread::sleep(std::time::Duration::from_secs(2));
+            std::thread::sleep(std::time::Duration::from_secs(5));
             println!("b");
         }
     });
+    std::thread::sleep(std::time::Duration::from_secs(3));
     println!("end");
     format!("Hello, {}! {}", name, x)
 }

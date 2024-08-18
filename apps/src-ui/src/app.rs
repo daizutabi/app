@@ -1,5 +1,6 @@
 use crate::components::action::Act;
 use crate::components::counter::SimpleCounter;
+use crate::components::counter_fn::counter;
 use crate::components::suspense::Sus;
 use crate::components::tauri::TauriTester;
 use crate::components::theme::Theme;
@@ -16,6 +17,7 @@ pub fn App() -> impl IntoView {
                 <Theme />
                 <Sus />
                 <Act />
+                {counter(0, 1)}
             </div>
         </ConfigProvider>
     }

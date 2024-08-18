@@ -1,15 +1,28 @@
 // use gloo_timers::future::TimeoutFuture;
 use leptos::prelude::*;
+use serde::{Deserialize, Serialize};
 use thaw::{Button, Input};
+
+#[derive(Serialize, Deserialize)]
+struct GreetArgs {
+    name: String,
+}
 
 // Here we define an async function
 // This could be anything: a network request, database read, etc.
 // Think of it as a mutation: some imperative async action you run,
 // whereas a resource would be some async data you load
 async fn add_todo(text: String) -> String {
-    logging::console_log(text.as_str());
     let mut x = text.clone();
     x.push_str("!");
+
+    leptos::spawn::spawn_local(async move {
+        log::info!("{}", text);
+        let args = GreetArgs { name: "xx".into() };
+        let msg: String = tauri_sys::core::invoke("greet", args).await;
+        log::info!("{}", msg);
+    });
+
     return x;
 }
 
