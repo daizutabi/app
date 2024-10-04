@@ -87,7 +87,7 @@ pub fn TauriTester() -> impl IntoView {
             <div>
                 <Button on_click=trigger_emit_event>"Trigger emit event"</Button>
                 <p>
-                    <strong>"Events emitted: "</strong>
+                    <strong>"Events emitted:"</strong>
                     {emit_count}
                 </p>
             </div>

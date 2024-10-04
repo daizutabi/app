@@ -6,7 +6,7 @@ pub fn run() {
     tauri::Builder::default()
         .setup(|app| {
             app.listen("front-to-back", move |event| {
-                println!("front-to-back: {event:?}");
+                println!("front-to-back:{event:?}");
             });
             Ok(())
         })
